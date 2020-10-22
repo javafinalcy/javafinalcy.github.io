@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://javajr.cn/2020/0918bd2c3.html</loc>
+    
+    <lastmod>2020-10-22</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://javajr.cn/2020/10f9cb3938.html</loc>
     
     <lastmod>2020-10-22</lastmod>
@@ -75,13 +82,6 @@
     <loc>https://javajr.cn/2020/09d06e8618.html</loc>
     
     <lastmod>2020-09-21</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/2020/0918bd2c3.html</loc>
-    
-    <lastmod>2020-09-12</lastmod>
     
   </url>
   
@@ -249,6 +249,20 @@
   </url>
   
   <url>
+    <loc>https://javajr.cn/tags/ArrayList/</loc>
+    <lastmod>2020-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/%E5%BE%AA%E7%8E%AF%E6%95%88%E7%8E%87/</loc>
+    <lastmod>2020-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://javajr.cn/tags/git/</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>daily</changefreq>
@@ -277,20 +291,6 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/%E8%B8%A9%E5%9D%91/</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/ArrayList/</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://javajr.cn/tags/mysql/</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>daily</changefreq>
@@ -312,14 +312,7 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/%E8%B8%A9%E5%9D%91%E4%B9%8B%E8%B7%AF/</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <loc>https://javajr.cn/tags/%E8%B8%A9%E5%9D%91/</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -368,14 +361,14 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <loc>https://javajr.cn/tags/%E8%B8%A9%E5%9D%91%E4%B9%8B%E8%B7%AF/</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/%E5%85%A5%E9%97%A8/</loc>
+    <loc>https://javajr.cn/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -404,13 +397,6 @@
   
   <url>
     <loc>https://javajr.cn/tags/Caffeine/</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/java%E4%BB%A3%E7%90%86/</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -460,20 +446,6 @@
   
   <url>
     <loc>https://javajr.cn/tags/gc%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/future/</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/CompletionService/</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -564,20 +536,41 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/%E5%BE%AA%E7%8E%AF%E6%95%88%E7%8E%87/</loc>
+    <loc>https://javajr.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2020-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2020-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/java%E4%BB%A3%E7%90%86/</loc>
+    <lastmod>2020-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/future/</loc>
+    <lastmod>2020-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/CompletionService/</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
 
-  
-  <url>
-    <loc>https://javajr.cn/categories/%E9%9B%86%E5%90%88/</loc>
-    <lastmod>2020-10-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
   
   <url>
     <loc>https://javajr.cn/categories/%E5%8D%9A%E5%AE%A2/</loc>
@@ -587,7 +580,7 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/categories/git/</loc>
+    <loc>https://javajr.cn/categories/%E9%9B%86%E5%90%88/</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -595,6 +588,13 @@
   
   <url>
     <loc>https://javajr.cn/categories/java/</loc>
+    <lastmod>2020-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/categories/git/</loc>
     <lastmod>2020-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
