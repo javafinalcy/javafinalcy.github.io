@@ -270,13 +270,6 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/synchronized/</loc>
-    <lastmod>2020-12-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://javajr.cn/tags/HashMap/</loc>
     <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
@@ -285,6 +278,13 @@
   
   <url>
     <loc>https://javajr.cn/tags/%E9%9B%86%E5%90%88/</loc>
+    <lastmod>2020-12-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/synchronized/</loc>
     <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -410,13 +410,6 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/%E8%B8%A9%E5%9D%91%E4%B9%8B%E8%B7%AF/</loc>
-    <lastmod>2020-12-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://javajr.cn/tags/spring-boot/</loc>
     <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
@@ -438,14 +431,7 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2020-12-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96/</loc>
+    <loc>https://javajr.cn/tags/%E8%B8%A9%E5%9D%91%E4%B9%8B%E8%B7%AF/</loc>
     <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -481,6 +467,20 @@
   
   <url>
     <loc>https://javajr.cn/tags/%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2020-12-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2020-12-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96/</loc>
     <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -536,20 +536,6 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/future/</loc>
-    <lastmod>2020-12-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/CompletionService/</loc>
-    <lastmod>2020-12-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://javajr.cn/tags/jvm/</loc>
     <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
@@ -571,21 +557,14 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/ThreadLocal/</loc>
+    <loc>https://javajr.cn/tags/future/</loc>
     <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/%E9%9D%A2%E8%AF%95/</loc>
-    <lastmod>2020-12-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/inheritableThreadLocals/</loc>
+    <loc>https://javajr.cn/tags/CompletionService/</loc>
     <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -627,6 +606,27 @@
   </url>
   
   <url>
+    <loc>https://javajr.cn/tags/ThreadLocal/</loc>
+    <lastmod>2020-12-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/%E9%9D%A2%E8%AF%95/</loc>
+    <lastmod>2020-12-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/inheritableThreadLocals/</loc>
+    <lastmod>2020-12-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://javajr.cn/tags/%E9%99%8D%E7%BA%A7/</loc>
     <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
@@ -657,14 +657,14 @@
 
   
   <url>
-    <loc>https://javajr.cn/categories/java/</loc>
+    <loc>https://javajr.cn/categories/%E9%9B%86%E5%90%88/</loc>
     <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://javajr.cn/categories/%E9%9B%86%E5%90%88/</loc>
+    <loc>https://javajr.cn/categories/java/</loc>
     <lastmod>2020-12-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
