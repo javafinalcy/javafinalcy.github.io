@@ -375,27 +375,6 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/AQS/</loc>
-    <lastmod>2021-03-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/Semaphore/</loc>
-    <lastmod>2021-03-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/CAS/</loc>
-    <lastmod>2021-03-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://javajr.cn/tags/idea/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
@@ -417,7 +396,14 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E/</loc>
+    <loc>https://javajr.cn/tags/AQS/</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/Semaphore/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -445,7 +431,7 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <loc>https://javajr.cn/tags/CAS/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -453,6 +439,13 @@
   
   <url>
     <loc>https://javajr.cn/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -501,21 +494,7 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/git/</loc>
-    <lastmod>2021-03-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/github/</loc>
-    <lastmod>2021-03-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</loc>
+    <loc>https://javajr.cn/tags/%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -536,7 +515,21 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/tags/%E5%BE%AA%E7%8E%AF%E6%95%88%E7%8E%87/</loc>
+    <loc>https://javajr.cn/tags/git/</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/github/</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -565,6 +558,13 @@
   
   <url>
     <loc>https://javajr.cn/tags/%E5%A4%A7%E9%87%8F%E6%95%B0%E6%8D%AE/</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/%E5%BE%AA%E7%8E%AF%E6%95%88%E7%8E%87/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -725,6 +725,20 @@
   </url>
   
   <url>
+    <loc>https://javajr.cn/tags/future/</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://javajr.cn/tags/CompletionService/</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://javajr.cn/tags/ThreadLocal/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
@@ -740,20 +754,6 @@
   
   <url>
     <loc>https://javajr.cn/tags/inheritableThreadLocals/</loc>
-    <lastmod>2021-03-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/future/</loc>
-    <lastmod>2021-03-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://javajr.cn/tags/CompletionService/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -839,14 +839,14 @@
   </url>
   
   <url>
-    <loc>https://javajr.cn/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</loc>
+    <loc>https://javajr.cn/categories/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://javajr.cn/categories/%E5%B7%A5%E5%85%B7/</loc>
+    <loc>https://javajr.cn/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2021-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
