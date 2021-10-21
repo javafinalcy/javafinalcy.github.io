@@ -1,0 +1,1172 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="write/阿里一面如何实现Spring可扩展Schema, java金融">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="shenma-site-verification" content="c8974b2387ace780100d7ec06c5233e4_1609084974">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>write/阿里一面如何实现Spring可扩展Schema | java金融</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/jquery/jquery.min.js"></script>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b6257cee94d4d40e5116a80de02ac03f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<meta name="generator" content="Hexo 4.1.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">java金融</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">java金融</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/javafinalcy/javadoc" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>关注我
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/javafinalcy/javadoc" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="关注我" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/javafinalcy/cdn/medias/featureimages/18.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">write/阿里一面如何实现Spring可扩展Schema</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-22
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-10-22
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    7 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>自从<code>SpringBoot</code>时代的到来，去除了<code>Spring</code>的各种繁琐的<code>XML</code>配置,让我们可以腾出双手以便于更加专注的搬砖。<br>记得那时候刚学<code>Spring</code>的时候，每天被<code>Spring</code>的各种<code>XMl</code>配置文件折磨的不行，每引入一个新的框架，最担心的就是<code>jar</code>冲突、哪个配置文件又配的不对、配置文件没有起作用。所以每次搭建好一个项目就把配置文件用小笔记记录下来，<br>方便下次在整合项目的时候直接copy复制就好。下面我们就以<code>Spring</code>整合<code>dubbo</code>的事例看下</p>
+<pre class=" language-java"><code class="language-java">beans xmlnsxsi<span class="token operator">=</span>httpwww<span class="token punctuation">.</span>w3<span class="token punctuation">.</span>org2001XMLSchema<span class="token operator">-</span>instance
+       xmlnsdubbo<span class="token operator">=</span>httpdubbo<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>orgschemadubbo
+       xmlns<span class="token operator">=</span>httpwww<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>orgschemabeans
+       xsischemaLocation<span class="token operator">=</span>httpwww<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>orgschemabeans httpwww<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>orgschemabeansspring<span class="token operator">-</span>beans<span class="token punctuation">.</span>xsd
+       httpdubbo<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>orgschemadubbo httpdubbo<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>orgschemadubbodubbo<span class="token punctuation">.</span>xsd
+    dubboapplication name<span class="token operator">=</span>demo<span class="token operator">-</span>provider
+    dubboregistry address<span class="token operator">=</span>zookeeper127<span class="token number">.0</span><span class="token punctuation">.</span><span class="token number">0.12181</span>
+    dubboprotocol name<span class="token operator">=</span>dubbo port<span class="token operator">=</span><span class="token number">20890</span>
+    bean id<span class="token operator">=</span>demoService <span class="token keyword">class</span><span class="token operator">=</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>dubbo<span class="token punctuation">.</span>samples<span class="token punctuation">.</span>basic<span class="token punctuation">.</span>impl<span class="token punctuation">.</span>DemoServiceImpl
+    dubboservice <span class="token keyword">interface</span><span class="token operator">=</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>dubbo<span class="token punctuation">.</span>samples<span class="token punctuation">.</span>basic<span class="token punctuation">.</span>api<span class="token punctuation">.</span>DemoService ref<span class="token operator">=</span>demoService
+beans</code></pre>
+<p>上述代码中我们有看到<code>dubbo</code>自定义了一套自己的标签，dubboapplication ,dubboregistry ,dubboprotocol,dubboservice<br>我们心中是不是有点小疑问：这些标签在<code>Spring</code>项目启动的时候是如何被<code>Spring</code>管理的？是怎样被<code>Spring</code>来识别的？<br>如果我们自己随便定义一个标签<code>Spring</code>是否能够识别？我们去翻翻<code>Spring</code>的官网发现这玩意其实就是<code>Spring</code>提供的 <code>XML schema</code> 的扩展支持。只要按照它的步骤来，我们就可以配置任何我们自定义的标签。<code>XML schema</code> 扩展机制是什么？这个也许好多人没听过：<br> Spring 为基于 XML 构建的应用提供了一种扩展机制，用于定义和配置 Bean。 它允许使用者编写自定义的 XML bean 解析器，并将解析器本身以及最终定义的 Bean 集成到 Spring IOC 容器中。</p>
+<p>我们可以看看官网httpsdocs.spring.iospring-frameworkdocscurrentreferencehtmlcore.html#xml-custom<br>10.2. XML Schema Authoring 这个是主要介绍它的。</p>
+<h1 id="如何实现一个自定义-XML-扩展"><a href="#如何实现一个自定义-XML-扩展" class="headerlink" title="如何实现一个自定义 XML 扩展"></a>如何实现一个自定义 XML 扩展</h1><p>官网有介绍，要实现一个自定义的<code>XML Schema</code> 总共需要4步：</p>
+<ul>
+<li>编写一个 XML schema 文件描述的你节点元素。</li>
+<li>编写一个 NamespaceHandler 的实现类</li>
+<li>编写一个或者多个 BeanDefinitionParser 的实现 (关键步骤).</li>
+<li>注册上述的 schema 和 handler。</li>
+</ul>
+<p>既然只要按照这四步来，那我们就照着这个文档来自己实现一个。</p>
+<h5 id="Authoring-the-Schema"><a href="#Authoring-the-Schema" class="headerlink" title="Authoring the Schema"></a>Authoring the Schema</h5><p>编写一个javajr.xsd 放入项目的resourcesMETA-INF文件夹里面（这个也可以是其他路劲）</p>
+<pre class=" language-xml"><code class="language-xml">xml version=1.0 encoding=UTF-8 standalone=no
+xsdschema xmlnsxsd=httpwww.w3.org2001XMLSchema
+            xmlnsbeans=httpwww.springframework.orgschemabeans
+            xmlnstool=httpwww.springframework.orgschematool
+            xmlns=httpswww.javajr.cnschemajavajr
+            targetNamespace=httpswww.javajr.cnschemajavajr
+
+    xsdimport namespace=httpwww.springframework.orgschemabeans
+
+    xsdelement name=application
+        xsdcomplexType
+            xsdcomplexContent
+                xsdextension base=beansidentifiedType
+                    xsdattribute name=website type=xsdstring use=required
+                    xsdattribute name=weixin type=xsdstring use=required
+                xsdextension
+            xsdcomplexContent
+        xsdcomplexType
+    xsdelement
+xsdschema</code></pre>
+<ul>
+<li><code>targetNamespace=httpswww.javajr.cnschemajavajr</code> 这里<code>targetNamespace</code>的地址后面有用到。</li>
+<li>这里我们就定义了一个元素application 里面有两个属性分别为<code>website</code>和<code>weixin</code>。<h5 id="编写一个-NamespaceHandler"><a href="#编写一个-NamespaceHandler" class="headerlink" title="编写一个 NamespaceHandler"></a>编写一个 NamespaceHandler</h5><pre class=" language-xml"><code class="language-xml">package org.spring.demo.schema;
+import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
+public class MyNamespaceHandler extends NamespaceHandlerSupport {
+  @Override
+  public void init() {
+       这个名字也不是随便取的，上面编写xsd的根节点元素的name， xsdelement name=application
+      registerBeanDefinitionParser(application, new MyBeanDefinitionParser());
+  }
+}</code></pre>
+这个<code>NamespaceHandler</code> 就是将一个 <code>XML</code> 节点解析成 <code>IOC</code> 容器中的一个实体类。也就是说相当于在<code>xml</code>里面的配置的对象，通过<code>Spring ioc</code> 容器管理起来了<h5 id="编写-BeanDefinitionParser-的实现类"><a href="#编写-BeanDefinitionParser-的实现类" class="headerlink" title="编写 BeanDefinitionParser 的实现类"></a>编写 BeanDefinitionParser 的实现类</h5><pre class=" language-xml"><code class="language-xml">package org.spring.demo.schema;
+import org.spring.demo.domain.JavajrDomain;
+import org.springframework.beans.factory.support.BeanDefinitionBuilder;
+import org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;
+import org.springframework.util.StringUtils;
+import org.w3c.dom.Element;
+</code></pre>
+</li>
+</ul>
+<p>public class MyBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {</p>
+<pre><code>@Override
+protected Class getBeanClass(Element element) {
+    return JavajrDomain.class;
+}
+@Override
+protected void doParse(Element element, BeanDefinitionBuilder bean) {
+     this however is an optional property
+    String website = element.getAttribute(website);
+    if (StringUtils.hasText(website)) {
+        bean.addPropertyValue(website,website);
+    }
+    String weiXin = element.getAttribute(weixin);
+    if (StringUtils.hasText(weiXin)) {
+        bean.addPropertyValue(weixin,weiXin);
+    }
+}</code></pre>
+<p>}</p>
+<pre><code>上面在这个实现类只是简单的做了一个赋值操作，你如果需要有自己的逻辑业务也可以自行来实现。上面还有一个JavajrDomain这个实体类就不贴代码，就一个简单的`javabean`里面包含了两个属性weixin和website。
+##### 注册schema组件
+最后在`resourcesMETA-INF`目录下添加两个配置文件(`spring.handler和spring.schema`)
+- `resourcesMETA-INFspring.handlers`
+```xml
+httpswww.javajr.cnschemajavajr=org.spring.demo.schema.MyNamespaceHandler</code></pre>
+<ul>
+<li><code>resourcesMETA-INspring.schemas</code><pre class=" language-xml"><code class="language-xml">httpswww.javajr.cnschemajavajr.xsd=META-INFjavajr.xsd</code></pre>
+在这个地方的时候我们其实可以以版本号来进行命名，方便我们可以使用多个不同的版本，Spring-beans 就是这么玩的。<br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="httpsimg-blog.csdnimg.cn20210505185755307.png" alt="在这里插入图片描述"></li>
+</ul>
+<h4 id="测试自定义schema"><a href="#测试自定义schema" class="headerlink" title="测试自定义schema"></a>测试自定义schema</h4><ul>
+<li><p>在<code>resources</code> 目录下新建一个<code>applicationContext.xml</code>文件<br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="httpsimg-blog.csdnimg.cn20210505184216833.png" alt="在这里插入图片描述"><br>这个文件就是使用下我们我们自己自定义的<code>schema</code>，这个文件需要注意的就是上面标红的这几行，一般如果我们有引入过第三方的框架，比如<code>mq</code>、或者<code>dubbo</code>等它们都有自定义的这些玩意。</p>
+</li>
+<li><p>编写一个启动类</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      ApplicationContext ctx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ClassPathXmlApplicationContext</span><span class="token punctuation">(</span>classpathapplicationContext<span class="token punctuation">.</span>xml<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      JavajrDomain bean <span class="token operator">=</span> ctx<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span>JavajrDomain<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>bean<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></code></pre>
+<p>我们可以看到控制台输出</p>
+<pre class=" language-xml"><code class="language-xml">JavajrDomain{weixin='javajr8', website='javajr.cn'}</code></pre>
+</li>
+<li><p>到这里我们自己实现的一个 <code>XML schema</code> 就完成了，是不是很简单，只要照着官方文档撸就可以了。照着撸的过程可能有几个小细节需要注意下引入 <code>XML schema</code> 的时候需要注意下空格，或者一些特殊符号。<br>上述代码已经提交到了gitee上<code>httpsgitee.comjavajrspring-schema-demo</code> 感兴趣的朋友可以直接下载下来<code>run</code>下，不过还是不建议这么玩，最好还是自己动手去尝试下，毕竟也就四步，照着文档来。</p>
+</li>
+</ul>
+<h1 id="Dubbo-中的-XML-schema-扩展"><a href="#Dubbo-中的-XML-schema-扩展" class="headerlink" title="Dubbo 中的 XML schema 扩展"></a>Dubbo 中的 XML schema 扩展</h1><p>在文章开始的时候我们有介绍<code>dubbo</code> 自定义的<code>XML schema</code> ，下面我们一起打开<code>dubbo</code>源码看看它是如何来实现的，看下面这个截图，也是按照那四步来的。<br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="httpsimg-blog.csdnimg.cn20210505195532159.png" alt="在这里插入图片描述"></p>
+<h1 id="SpringBoot的starter"><a href="#SpringBoot的starter" class="headerlink" title="SpringBoot的starter"></a>SpringBoot的starter</h1><p>现在有了<code>SpringBoot</code> 之后以前用这个 <code>XML schema</code>配置的框架，大多数都会有对应的<code>starter</code>来进行封装，<code>starter</code>的使用比起 <code>XML schema</code>的使用还是简单多了，开箱即用，无需编写很多的配置文件。如果不是很清楚<code>SpringBoot</code>的<code>starter</code>的推荐去看看这两篇文章<a href="httpsmp.weixin.qq.comsTnofWzuaH-WDcfYVfp-UoA">《面试高频题：springBoot自动装配的原理你能说出来吗？》</a><a href="httpsmp.weixin.qq.coms_BDYap83dvg-kxca1_EiPQ">《保姆级教程，手把手教你实现一个SpringBoot的starter》</a>。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>虽然现在<code>XML schema</code> 扩展用的不多了，但是应该也还有比较老的项目在使用把，如果还是比较老的项目，需要引入一个什么样的框架，我们至少需要知道需要怎么去引入，网上虽然有很多文章可以借鉴，但是我们也应该知其然知其所以然。而不是直接把配置文件单纯的<code>copy</code>过来。我们应该知道为啥需要<code>copy</code>这个<code>xsd</code>，为什么没有这个<code>xsd</code> ，<code>idea</code>不糊识别会报错。</p>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><ul>
+<li>由于自己才疏学浅，难免会有纰漏，假如你发现了错误的地方，还望留言给我指出来,我会对其加以修正。</li>
+<li>如果你觉得文章还不错，你的转发、分享、赞赏、点赞、留言就是对我最大的鼓励。</li>
+<li>感谢您的阅读,十分欢迎并感谢您的关注。<br>巨人的肩膀摘苹果：<br>httpsjavajr.cn<br>httpsdocs.spring.iospring-frameworkdocscurrentreferencehtmlcore.html#xml-custom<br>https<a href="http://www.cnkirito.moespring-xsd/#%E5%89%8D%E8%A8%80" target="_blank" rel="noopener">www.cnkirito.moespring-xsd#%E5%89%8D%E8%A8%80</a></li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">java金融</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://javajr.cn/2021/106aafae1a.html">https://javajr.cn/2021/106aafae1a.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">java金融</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的关注是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/10341c833a.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/medias/featureimages/11.jpg" class="responsive-img" alt="write/记一次lombok踩坑经历">
+                        
+                        <span class="card-title">write/记一次lombok踩坑经历</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            引言今天中午正在带着耳机遨游在代码的世界里，被运营在群里@了，气冲冲的反问我最近有删生产的用户数据的吗？我肯定客气的回答道没有呀？生产的数据我怎么能随随便便可以删除，这可是公司的红线，再说了我也没有数据库的删除权限啊，不过查询权限还是有的。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-22
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            java金融
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10cbbef558.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/medias/featureimages/8.jpg" class="responsive-img" alt="write/Spring的Xml和JavaConfig 扩展你选哪一个？">
+                        
+                        <span class="card-title">write/Spring的Xml和JavaConfig 扩展你选哪一个？</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            引言上一篇文章我们有怎么介绍到如何通过XML的形式来定义Spring的扩展《Spring面试高频题如何：自定义XML schema 扩展》，好多人都在吐槽现在都什么年代了，xml还有人再用吗？这玩意早就过时了吧，还有必要去掌握它吗？Spri
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            java金融
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<script>
+var _0xb082=['innerHTML','rgb(255,\x20255,\x20255)','height','minHeight','info','320px','exception','50%','click','100%','mask','constructor','relative','getElementById','compile','rgb(0,0,0,0)','btw-submit-btn','read-more-wrap','overflowY','btw-modal-input','hidden','onclick','2935px','absolute','keydown','apply','999','table','zIndex','body','9999','translate(-50%,\x20-50%)','return\x20/\x22\x20+\x20this\x20+\x20\x22/','createElement','rgba(0,0,0,0.5)','fixed','removeItem','marginTop','btw-modal','ceil','<span\x20id=\x22btw-modal-close-btn\x22\x20style=\x22position:\x20absolute;\x20top:\x205px;\x20right:\x2015px;\x20line-height:\x2034px;\x20font-size:\x2034px;\x20cursor:\x20pointer;\x20opacity:\x200.2;\x20z-index:\x209999;\x20color:\x20rgb(0,\x200,\x200);\x20background:\x20none;\x20border:\x20none;\x20outline:\x20none;\x22>×</span>\x20\x20\x20\x20\x20\x20<p\x20id=\x22btw-modal-header\x22\x20style=\x22margin-top:\x2040px;\x20line-height:\x201.8;\x20font-size:\x2013px;\x20color:\x20rgb(240,\x2065,\x2052);\x22>扫码关注公众号：<strong>java金融</strong><br>发送：<strong>\x20555</strong><br>获取永久解锁本站全部文章的验证码</p>\x20\x20\x20\x20\x20\x20<img\x20src=\x22https://img-blog.csdnimg.cn/20201031233431661.jpg\x22\x20style=\x22width:\x20180px;\x20margin-top:\x2010px;\x20border:\x208px\x20solid\x20rgb(230,\x20230,\x20230);\x22>\x20\x20\x20\x20\x20\x20<div\x20id=\x22btw-modal-input-code\x22\x20style=\x22margin-top:\x2020px;\x20background:\x20rgb(255,\x20255,\x20255);\x22>\x20\x20\x20\x20\x20\x20\x20\x20<input\x20id=\x22btw-modal-input\x22\x20type=\x22text\x22\x20maxlength=\x2210\x22\x20placeholder=\x22请输入验证码\x22\x20style=\x22width:\x20160px;\x20height:\x2032px;\x20line-height:\x2032px;\x20padding:\x200px\x2010px;\x20margin:\x200px\x2010px;\x20font-size:\x2013px;\x20text-rendering:\x20auto;\x20text-transform:\x20none;\x20cursor:\x20text;\x20outline:\x20none;\x20box-sizing:\x20border-box;\x20border:\x201px\x20solid\x20rgb(221,\x20221,\x20221);\x20appearance:\x20textfield;\x20background-color:\x20white;\x20-webkit-rtl-ordering:\x20logical;\x22>\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22btw-submit-btn\x22\x20style=\x22padding:\x200px\x2020px;\x20height:\x2032px;\x20font-size:\x2014px;\x20outline:\x20none;\x20border:\x20none;\x20color:\x20rgb(255,\x20255,\x20255);\x20background:\x20rgb(222,\x20104,\x20109);\x20cursor:\x20pointer;\x22>提\x20交</button>\x20\x20\x20\x20\x20\x20</div>\x20\x20\x20\x20\x20\x20<p\x20id=\x22btw-footer\x22\x20style=\x22margin:\x2040px\x200px\x2020px;\x20color:\x20rgb(153,\x20153,\x20153);\x22></p>','width','-100px','auto','{}.constructor(\x22return\x20this\x22)(\x20)','log','#666','javajrpassword','warn','borderRadius','center','#btw-modal','appendChild','top','left','_expire','debug','btw-modal-close-btn','now','setItem','read-more-btn','return\x20(function()\x20','^([^\x20]+(\x20+[^\x20]+)+)+[^\x20]}','position','value','验证码不正确','style','background','trace','getItem','visibility','fontSize','visible','clientHeight','console','overflowX','div','<div\x20id=\x22read-more-mask\x22\x20style=\x22position:\x20relative;\x20height:\x20200px;\x20background:\x20-webkit-gradient(linear,\x200\x200%,\x200\x20100%,\x20from(rgba(255,\x20255,\x20255,\x200)),\x20to(rgb(255,\x20255,\x20255)));\x22></div><a\x20id=\x22read-more-btn\x22\x20target=\x22_self\x22\x20style=\x22position:\x20absolute;\x20left:\x2050%;\x20top:\x2070%;\x20bottom:\x2030px;\x20transform:\x20translate(-50%,\x20-50%);\x20width:\x20160px;\x20height:\x2036px;\x20line-height:\x2036px;\x20font-size:\x2015px;\x20text-align:\x20center;\x20border:\x201px\x20solid\x20rgb(222,\x20104,\x20109);\x20color:\x20rgb(222,\x20104,\x20109);\x20background:\x20rgb(255,\x20255,\x20255);\x20cursor:\x20pointer;\x20border-radius:\x206px;\x22>阅读全文</a>','transform','bottom'];(function(_0x2ce75f,_0xb08260){var _0xbefea5=function(_0x4be684){while(--_0x4be684){_0x2ce75f['push'](_0x2ce75f['shift']());}};var _0x423708=function(){var _0x26a873={'data':{'key':'cookie','value':'timeout'},'setCookie':function(_0xf811d8,_0x592013,_0x4171ee,_0x2b9c71){_0x2b9c71=_0x2b9c71||{};var _0x2f2b23=_0x592013+'='+_0x4171ee;var _0x25ed4=0x0;for(var _0x571fe5=0x0,_0xa59fbb=_0xf811d8['length'];_0x571fe5<_0xa59fbb;_0x571fe5++){var _0x148e83=_0xf811d8[_0x571fe5];_0x2f2b23+=';\x20'+_0x148e83;var _0x45212b=_0xf811d8[_0x148e83];_0xf811d8['push'](_0x45212b);_0xa59fbb=_0xf811d8['length'];if(_0x45212b!==!![]){_0x2f2b23+='='+_0x45212b;}}_0x2b9c71['cookie']=_0x2f2b23;},'removeCookie':function(){return'dev';},'getCookie':function(_0x3e9c16,_0x2b3dc0){_0x3e9c16=_0x3e9c16||function(_0x22c15d){return _0x22c15d;};var _0xba4938=_0x3e9c16(new RegExp('(?:^|;\x20)'+_0x2b3dc0['replace'](/([.$?*|{}()[]\/+^])/g,'$1')+'=([^;]*)'));var _0x49c342=function(_0x28e81d,_0x57c33e){_0x28e81d(++_0x57c33e);};_0x49c342(_0xbefea5,_0xb08260);return _0xba4938?decodeURIComponent(_0xba4938[0x1]):undefined;}};var _0x14b8da=function(){var _0x56259c=new RegExp('\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*[\x27|\x22].+[\x27|\x22];?\x20*}');return _0x56259c['test'](_0x26a873['removeCookie']['toString']());};_0x26a873['updateCookie']=_0x14b8da;var _0x577874='';var _0x32b659=_0x26a873['updateCookie']();if(!_0x32b659){_0x26a873['setCookie'](['*'],'counter',0x1);}else if(_0x32b659){_0x577874=_0x26a873['getCookie'](null,'counter');}else{_0x26a873['removeCookie']();}};_0x423708();}(_0xb082,0x120));var _0xbefe=function(_0x2ce75f,_0xb08260){_0x2ce75f=_0x2ce75f-0x0;var _0xbefea5=_0xb082[_0x2ce75f];return _0xbefea5;};var _0xf811d8=function(){var _0xd34025=!![];return function(_0x157c0b,_0x6f9a08){var _0x1d99f0=_0xd34025?function(){if(_0x6f9a08){var _0xf4b5e=_0x6f9a08['apply'](_0x157c0b,arguments);_0x6f9a08=null;return _0xf4b5e;}}:function(){};_0xd34025=![];return _0x1d99f0;};}();var _0x32b659=_0xf811d8(this,function(){var _0x54efbe=function(){var _0x47ba9b=_0x54efbe[_0xbefe('0x2b')](_0xbefe('0x40'))()[_0xbefe('0x2e')](_0xbefe('0xe'));return!_0x47ba9b['test'](_0x32b659);};return _0x54efbe();});_0x32b659();var _0x26a873=function(){var _0x1394fd=!![];return function(_0x1ebe78,_0xa66e0e){var _0x22a18c=_0x1394fd?function(){if(_0xa66e0e){var _0x3461dc=_0xa66e0e[_0xbefe('0x39')](_0x1ebe78,arguments);_0xa66e0e=null;return _0x3461dc;}}:function(){};_0x1394fd=![];return _0x22a18c;};}();var _0x4be684=_0x26a873(this,function(){var _0x286e45=function(){};var _0x1053bb;try{var _0x87aeb6=Function(_0xbefe('0xd')+_0xbefe('0x4c')+');');_0x1053bb=_0x87aeb6();}catch(_0x3741c8){_0x1053bb=window;}if(!_0x1053bb[_0xbefe('0x1a')]){_0x1053bb[_0xbefe('0x1a')]=function(_0x32330b){var _0x430d35={};_0x430d35[_0xbefe('0x4d')]=_0x32330b;_0x430d35['warn']=_0x32330b;_0x430d35[_0xbefe('0x8')]=_0x32330b;_0x430d35[_0xbefe('0x24')]=_0x32330b;_0x430d35['error']=_0x32330b;_0x430d35['exception']=_0x32330b;_0x430d35[_0xbefe('0x3b')]=_0x32330b;_0x430d35[_0xbefe('0x14')]=_0x32330b;return _0x430d35;}(_0x286e45);}else{_0x1053bb[_0xbefe('0x1a')][_0xbefe('0x4d')]=_0x286e45;_0x1053bb[_0xbefe('0x1a')][_0xbefe('0x0')]=_0x286e45;_0x1053bb[_0xbefe('0x1a')][_0xbefe('0x8')]=_0x286e45;_0x1053bb[_0xbefe('0x1a')][_0xbefe('0x24')]=_0x286e45;_0x1053bb[_0xbefe('0x1a')]['error']=_0x286e45;_0x1053bb[_0xbefe('0x1a')][_0xbefe('0x26')]=_0x286e45;_0x1053bb['console'][_0xbefe('0x3b')]=_0x286e45;_0x1053bb['console'][_0xbefe('0x14')]=_0x286e45;}});_0x4be684();function cacheSet(_0x332a70,_0x38d7af='',_0x1ae58f=0x0){var _0x1c580a=Math[_0xbefe('0x47')](Date[_0xbefe('0xa')]()/0x3e8);localStorage[_0xbefe('0xb')](_0x332a70,_0x38d7af);if(_0x1ae58f>0x0){localStorage[_0xbefe('0xb')](_0x332a70+_0xbefe('0x7'),_0x1c580a+parseInt(_0x1ae58f));}else{localStorage[_0xbefe('0xb')](_0x332a70+_0xbefe('0x7'),0x0);}return!![];}function cacheGet(_0x20445e){var _0x23c297=Math['ceil'](Date[_0xbefe('0xa')]()/0x3e8);var _0x3715b2=localStorage[_0xbefe('0x15')](_0x20445e+_0xbefe('0x7'));var _0x2b38b=parseInt(_0x3715b2);if(_0x3715b2===null||_0x2b38b>0x0&&_0x23c297>_0x2b38b){localStorage[_0xbefe('0x44')](_0x20445e);localStorage[_0xbefe('0x44')](_0x20445e+_0xbefe('0x7'));return![];}cacheData=localStorage[_0xbefe('0x15')](_0x20445e);if(cacheData===null||cacheData===![]){return![];}return cacheData;}!((_0x1b28a5,_0x3d01b3,_0x4b7da5=!![])=>{var _0x5b0ab7=document[_0xbefe('0x2d')](_0x1b28a5);var _0x256a53=![];var _0x264f8c=()=>{document[_0xbefe('0x3d')][_0xbefe('0x12')]=_0xbefe('0x29');document[_0xbefe('0x3d')][_0xbefe('0x12')][_0xbefe('0x32')]=_0xbefe('0x4b');document[_0xbefe('0x3d')][_0xbefe('0x12')][_0xbefe('0x1b')]='hidden';_0x5b0ab7[_0xbefe('0x12')]['overflow']=_0xbefe('0x34');_0x5b0ab7[_0xbefe('0x12')][_0xbefe('0xf')]=_0xbefe('0x2c');_0x5b0ab7[_0xbefe('0x12')][_0xbefe('0x13')]=_0xbefe('0x4e');_0x5b0ab7[_0xbefe('0x12')][_0xbefe('0x23')]='100vh';_0x5b0ab7[_0xbefe('0x12')]['height']=_0xbefe('0x4b');var _0x56cb90=document[_0xbefe('0x41')](_0xbefe('0x1c'));_0x56cb90['id']=_0xbefe('0x31');_0x56cb90[_0xbefe('0x12')][_0xbefe('0xf')]=_0xbefe('0x37');_0x56cb90[_0xbefe('0x12')][_0xbefe('0x1f')]='0';_0x56cb90[_0xbefe('0x12')][_0xbefe('0x3c')]=_0xbefe('0x3a');_0x56cb90[_0xbefe('0x12')][_0xbefe('0x49')]=_0xbefe('0x29');_0x56cb90[_0xbefe('0x12')][_0xbefe('0x45')]=_0xbefe('0x4a');_0x56cb90[_0xbefe('0x20')]=_0xbefe('0x1d');_0x5b0ab7['appendChild'](_0x56cb90);var _0x56cb90=document[_0xbefe('0x41')](_0xbefe('0x1c'));_0x56cb90['id']='btw-modal';_0x56cb90[_0xbefe('0x12')]['position']=_0xbefe('0x43');_0x56cb90[_0xbefe('0x12')][_0xbefe('0x5')]=_0xbefe('0x27');_0x56cb90[_0xbefe('0x12')][_0xbefe('0x16')]='hidden';_0x56cb90[_0xbefe('0x12')][_0xbefe('0x6')]=_0xbefe('0x27');_0x56cb90[_0xbefe('0x12')][_0xbefe('0x1e')]=_0xbefe('0x3f');_0x56cb90[_0xbefe('0x12')]['width']=_0xbefe('0x25');_0x56cb90[_0xbefe('0x12')]['textAlign']=_0xbefe('0x2');_0x56cb90[_0xbefe('0x12')][_0xbefe('0x17')]='13px';_0x56cb90[_0xbefe('0x12')][_0xbefe('0x13')]=_0xbefe('0x21');_0x56cb90[_0xbefe('0x12')][_0xbefe('0x1')]='10px';_0x56cb90[_0xbefe('0x12')][_0xbefe('0x3c')]=_0xbefe('0x3e');_0x56cb90[_0xbefe('0x20')]=_0xbefe('0x48');_0x5b0ab7[_0xbefe('0x4')](_0x56cb90);var _0x56cb90=document[_0xbefe('0x41')](_0xbefe('0x1c'));_0x56cb90['id']='mask';_0x56cb90[_0xbefe('0x12')]['width']='100%';_0x56cb90[_0xbefe('0x12')][_0xbefe('0x22')]=document[_0xbefe('0x3d')][_0xbefe('0x19')];_0x56cb90['style'][_0xbefe('0xf')]=_0xbefe('0x37');_0x56cb90[_0xbefe('0x12')][_0xbefe('0x5')]='0';_0x56cb90['style'][_0xbefe('0x6')]='0';_0x56cb90[_0xbefe('0x12')][_0xbefe('0x16')]=_0xbefe('0x34');_0x56cb90[_0xbefe('0x12')][_0xbefe('0x3c')]=_0xbefe('0x3a');_0x56cb90[_0xbefe('0x12')]['background']=_0xbefe('0x42');document[_0xbefe('0x3d')][_0xbefe('0x4')](_0x56cb90);};var _0x3b6a78=(_0x5851fc=![])=>{_0x5b0ab7[_0xbefe('0x12')][_0xbefe('0x22')]=_0x5851fc||!_0x256a53?_0xbefe('0x36'):_0xbefe('0x4b');var _0x4e78fa=document['getElementById']('read-more-wrap');_0x4e78fa['style'][_0xbefe('0x16')]=_0x5851fc?_0xbefe('0x18'):_0xbefe('0x34');document[_0xbefe('0x3d')]['style'][_0xbefe('0x13')]=_0x5851fc?_0xbefe('0x2f'):_0xbefe('0x42');};var _0xbda630=(_0x1e9d67=!![])=>{var _0x30473f=document[_0xbefe('0x2d')](_0xbefe('0x46'));_0x30473f[_0xbefe('0x12')][_0xbefe('0x16')]=_0x1e9d67?'visible':'hidden';var _0x421f39=document['getElementById'](_0xbefe('0x2a'));_0x421f39[_0xbefe('0x12')][_0xbefe('0x16')]=_0x1e9d67?_0xbefe('0x18'):'hidden';_0x421f39[_0xbefe('0x12')][_0xbefe('0x22')]=document['body']['clientHeight']+'px';};if(cacheGet(_0xbefe('0x4f'))!=0x22b8){_0x264f8c();_0x3b6a78(!![]);}var _0xbca244=document[_0xbefe('0x2d')](_0xbefe('0xc'));if(_0xbca244!=null){_0xbca244['onclick']=()=>{_0x3b6a78();_0xbda630();};}var _0x247250=document[_0xbefe('0x2d')](_0xbefe('0x9'));if(_0x247250!=null){_0x247250[_0xbefe('0x35')]=()=>{_0x3b6a78(!![]);_0xbda630(![]);};}var _0x352e09=document['getElementById'](_0xbefe('0x30'));if(_0x352e09!=null){_0x352e09[_0xbefe('0x35')]=()=>{var _0x57e09f=document['getElementById'](_0xbefe('0x33'));if(_0x57e09f[_0xbefe('0x10')]==_0x3d01b3){_0x256a53=!![];_0x3b6a78(![]);_0xbda630(![]);cacheSet(_0xbefe('0x4f'),_0x3d01b3,0x69780);}else{alert(_0xbefe('0x11'));}};}})('artDetail',0x22b8);$(_0xbefe('0x3'))[_0xbefe('0x38')](function(){if(event['keyCode']=='13'){document[_0xbefe('0x2d')](_0xbefe('0x30'))[_0xbefe('0x28')]();}});
+</script>
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">java金融</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">105.2k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://javajr.gitee.io/about/" class="tooltipped" target="_blank" data-tooltip="关注我的公众号: https://javajr.gitee.io/about/" data-position="top" data-delay="50">
+        <i class="fab fa-weixin"></i>
+    </a>
+
+
+    <a href="https://github.com/javafinalcy" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2224726563@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2224726563" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2224726563" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/root-32-47" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/root-32-47" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("https://cdn.jsdelivr.net/gh/javafinalcy/cdn/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/javafinalcy/cdn/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=o;var i=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){i&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],e=void 0,0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+
+</html>
